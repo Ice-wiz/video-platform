@@ -14,7 +14,7 @@ const ListingPage = () => {
 
     const fetchAllUsers = async () => {
         try {
-            const response = await axios.get('http://localhost:3000/api/users/all', {
+            const response = await axios.get('https://video-platform-mu.vercel.app/api/users/all', {
                 headers: {
                     Authorization: `Bearer ${localStorage.getItem('token')}`,
                 },
