@@ -31,7 +31,7 @@ const App = () => {
 
   const getUserDetails = async () => {
     try {
-      const response = await axios.get('http://localhost:3000/api/users/me', {
+      const response = await axios.get('https://video-platform-mu.vercel.app/api/users/me', {
         headers: {
           Authorization: `Bearer ${localStorage.getItem('token')}`,
         },
