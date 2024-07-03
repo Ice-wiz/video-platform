@@ -14,7 +14,7 @@ const Login = () => {
     e.preventDefault();
 
     try {
-      const response = await axios.post(`http://localhost:3000/api/users/login`, {
+      const response = await axios.post(`https://video-platform-mu.vercel.app/api/users/login`, {
         firstname,
         password,
       });
