@@ -26,7 +26,7 @@ const UserProfile = () => {
         setLoading(true);
         setError('');
         try {
-            const response = await axios.get(`http://localhost:3000/api/users/${userId}`, {
+            const response = await axios.get(`https://video-platform-mu.vercel.app/api/users/${userId}`, {
                 headers: {
                     Authorization: `Bearer ${localStorage.getItem('token')}`,
                 },
