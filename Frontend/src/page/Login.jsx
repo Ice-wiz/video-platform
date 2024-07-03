@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import Navbar from '../component/Navbar';
 import Footer from '../component/Footer';
 import axios from 'axios';
+const backendUrl = import.meta.env.VITE_BACKEND_URL;
 
 const Login = () => {
   const [firstname, setFirstname] = useState('');
@@ -14,7 +15,7 @@ const Login = () => {
     e.preventDefault();
 
     try {
-      const response = await axios.post(`https://video-platform-mu.vercel.app/api/users/login`, {
+      const response = await axios.post(`${backendUrl}/api/users/login`, {
         firstname,
         password,
       });
@@ -23,11 +24,11 @@ const Login = () => {
         throw new Error('Token not found in response');
       }
 
-      localStorage.setItem('token', response.data.token); 
+      localStorage.setItem('token', response.data.token);
       navigate('/profile');
     } catch (error) {
       console.error('Login error:', error);
-      
+
     }
   };
 
