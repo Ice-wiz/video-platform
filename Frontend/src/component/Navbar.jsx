@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
+const backendUrl = import.meta.env.VITE_BACKEND_URL;
 
 const Navbar = ({ isAuthenticated, onLogout }) => {
   const navigate = useNavigate();
@@ -11,7 +12,7 @@ const Navbar = ({ isAuthenticated, onLogout }) => {
     const fetchUserDetails = async () => {
       if (token) {
         try {
-          const response = await axios.get('https://video-platform-mu.vercel.app/api/users/me', {
+          const response = await axios.get(`${backendUrl}/api/users/me`, {
             headers: {
               Authorization: `Bearer ${token}`,
             },
