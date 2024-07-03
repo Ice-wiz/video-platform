@@ -14,7 +14,7 @@ const Register = () => {
     e.preventDefault();
 
     try {
-      const response = await axios.post(`http://localhost:3000/api/users/register`, {
+      const response = await axios.post(`https://video-platform-mu.vercel.app/api/users/register`, {
         firstname,
         lastname,
         email,
