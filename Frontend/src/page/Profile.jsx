@@ -65,7 +65,7 @@ const useBioUpdate = (setProfile, setError) => {
         setError('');
         try {
             const response = await axios.put(
-                'http://localhost:3000/api/users/bio',
+                'https://video-platform-mu.vercel.app/api/users/bio',
                 { bio },
                 {
                     headers: {
@@ -125,7 +125,7 @@ const useVideoUpload = (setProfile, setError) => {
         formData.append('thumbnail', event.target.thumbnail.files[0]);
 
         try {
-            const response = await axios.post('http://localhost:3000/api/uploads/video', formData, {
+            const response = await axios.post('https://video-platform-mu.vercel.app/api/uploads/video', formData, {
                 headers: {
                     'Content-Type': 'multipart/form-data',
                     Authorization: `Bearer ${localStorage.getItem('token')}`
@@ -190,7 +190,7 @@ const useProfilePictureUpdate = (setProfile, setError) => {
         formData.append('file', event.target.profilePhoto.files[0]);
 
         try {
-            const response = await axios.post('http://localhost:3000/api/uploads/profile-picture', formData, {
+            const response = await axios.post('https://video-platform-mu.vercel.app/api/uploads/profile-picture', formData, {
                 headers: {
                     'Content-Type': 'multipart/form-data',
                     Authorization: `Bearer ${localStorage.getItem('token')}`
