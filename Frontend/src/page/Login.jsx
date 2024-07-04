@@ -5,7 +5,7 @@ import Footer from '../component/Footer';
 import axios from 'axios';
 const backendUrl = import.meta.env.VITE_BACKEND_URL;
 
-const Login = () => {
+const Login = ({onLogin}) => {
   const [firstname, setFirstname] = useState('');
   const [password, setPassword] = useState('');
   const navigate = useNavigate();
@@ -25,6 +25,7 @@ const Login = () => {
       }
 
       localStorage.setItem('token', response.data.token);
+      onLogin(); 
       navigate('/profile');
     } catch (error) {
       console.error('Login error:', error);
