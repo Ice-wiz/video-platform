@@ -127,7 +127,7 @@ const useVideoUpload = (setProfile, setError) => {
         formData.append('thumbnail', event.target.thumbnail.files[0]);
 
         try {
-            const response = await axios.post(`${backend}/api/uploads/video`, formData, {
+            const response = await axios.post(`${backendUrl}/api/uploads/video`, formData, {
                 headers: {
                     'Content-Type': 'multipart/form-data',
                     Authorization: `Bearer ${localStorage.getItem('token')}`
