@@ -7,6 +7,7 @@ import Register from './page/Register';
 import Profile from './page/Profile';
 import ListingPage from './page/ListingPage';
 import UserProfile from './page/UserProfile';
+const backendUrl = import.meta.env.VITE_BACKEND_URL;
 
 const App = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -31,7 +32,7 @@ const App = () => {
 
   const getUserDetails = async () => {
     try {
-      const response = await axios.get('https://video-platform-mu.vercel.app/api/users/me', {
+      const response = await axios.get(`${backendUrl}/api/users/me`, {
         headers: {
           Authorization: `Bearer ${localStorage.getItem('token')}`,
         },
@@ -40,15 +41,13 @@ const App = () => {
       setUser(response.data); 
     } catch (error) {
       console.error('Error fetching user details:', error.response?.data || error.message);
-
     }
   };
 
   return (
     <Router>
-      <Navbar isAuthenticated={isLoggedIn} onLogout={handleLogout} />
+      <Navbar isAuthenticated={isLoggedIn} onLogout={handleLogout} user={user} />
       <Routes>
-     
         <Route path="/" element={isLoggedIn ? <Navigate to="/profile" /> : <Login />} />
         <Route path="/login" element={isLoggedIn ? <Navigate to="/profile" /> : <Login />} />
         <Route path="/register" element={isLoggedIn ? <Navigate to="/profile" /> : <Register />} />
