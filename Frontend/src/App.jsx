@@ -24,6 +24,11 @@ const App = () => {
     }
   }, []);
 
+  const handleLogin = async () => {
+    setIsLoggedIn(true);
+    await getUserDetails(); // Fetch user details upon successful login
+  };
+
   const handleLogout = () => {
     localStorage.removeItem('token');
     setIsLoggedIn(false);
@@ -38,7 +43,7 @@ const App = () => {
         },
       });
 
-      setUser(response.data); 
+      setUser(response.data);
     } catch (error) {
       console.error('Error fetching user details:', error.response?.data || error.message);
     }
@@ -48,9 +53,9 @@ const App = () => {
     <Router>
       <Navbar isAuthenticated={isLoggedIn} onLogout={handleLogout} user={user} />
       <Routes>
-        <Route path="/" element={isLoggedIn ? <Navigate to="/profile" /> : <Login />} />
-        <Route path="/login" element={isLoggedIn ? <Navigate to="/profile" /> : <Login />} />
-        <Route path="/register" element={isLoggedIn ? <Navigate to="/profile" /> : <Register />} />
+        <Route path="/" element={isLoggedIn ? <Navigate to="/profile" /> : <Login onLogin={handleLogin} />} />
+        <Route path="/login" element={isLoggedIn ? <Navigate to="/profile" /> : <Login onLogin={handleLogin} />} />
+        <Route path="/register" element={isLoggedIn ? <Navigate to="/profile" /> : <Register onLogin={handleLogin} />} />
         <Route path="/profile" element={<Profile user={user} />} />
         <Route path="/profile/:userId" element={<UserProfile />} />
         <Route path="/listing" element={<ListingPage />} />
